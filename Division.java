@@ -20,7 +20,9 @@ public class Division {
 
 		result = a + b + num;
 		
-		if((815 % result) == 0){
+		num= (b * 10) + (a * 100) + num;
+		
+		if((num % result) == 0){
 			
 			System.out.println("The number can be divided by the sum of its digits.");
 		}
