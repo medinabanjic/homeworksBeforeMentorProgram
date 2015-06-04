@@ -1,47 +1,206 @@
+package ba.bitcamp.medina;
+
+import java.util.Scanner;
+
 public class Methods {
 
-	public static int getNextOddNumber(int num) {
-		if (num % 2 == 0) {
-			num = num + 1;
-		} else
-			num = num + 2;
-		return num;
+	
+	
+	public static int getMax(int a, int b) {
+		if (a > b) {
+			return a;
+		}
 
+		else {
+			return b;
+		}
+	}
+	
+	
+
+	public static String getExtension(String filename) {
+
+		String fileName = " ";
+		String invert = "";
+
+		for (int i = filename.length() - 1; i > 0; i--) {
+			char reader = filename.charAt(i);
+			if (reader == '.') {
+				break;
+			} else {
+				fileName += reader;
+			}
+		}
+
+		for (int e = fileName.length() - 1; e >= 0; e--) {
+			char reader3 = fileName.charAt(e);
+			invert += reader3;
+		}
+		
+
+		return "." + invert;
 	}
 
-	// this method will return next odd number, we just check if it is already
-	// odd or even and add 2 or 1
+	
+	
+	public static boolean canBeBinary(int num) {
 
-	public static double getAreaOfCircle(int diameter) {
-		double area = (diameter / 2) * (diameter / 2) * Math.PI;
-		return area;
+		boolean canBe = true;
+		while (num != 0) {
 
+			int digit = num % 10;
+			num = num / 10;
+
+			if (digit > 1 || digit <= -1) {
+
+				canBe = false;
+				break;
+
+			}
+
+		}
+		return canBe;
+	}
+	
+	
+
+	public static int getRandomNumber(int min, int max) {
+
+		int a = 0;
+
+		if (min > max) {
+
+			a = -1;
+		}
+
+		for (int i = min; i <= max; i++) {
+
+			a = (int) (Math.random() * max + min);
+			break;
+		}
+
+		return a;
 	}
 
-	// we just implement the equation for area of circle and return area
+	
+	
+	public static String getType(String value) {
+		int i = 1;
 
-	public static boolean isInRange(int first, int last, int n) {
-		boolean numIsInRange = true;
-		if (first < n && n < last) {
-			numIsInRange = true;
-		} else
-			numIsInRange = false;
-		return numIsInRange;
+		String message = "";
+		while (i > 0)
+
+			try {
+				if (i == 1) {
+					int a = Integer.parseInt(value);
+					message = "integer";
+					
+					break;
+				} else if (i == 2) {
+					double b = Double.parseDouble(value);
+					message = "double";
+					
+					break;
+				} else if (i == 3) {
+					boolean c = Boolean.parseBoolean(value);
+
+					if (c == true) {
+						message = "boolean";
+						
+						break;
+					} else {
+						i++;
+					}
+				}
+
+				else if (i == 4) {
+					int length = value.length();
+					if (length <= 1) {
+						message = "char";
+						
+						break;
+					} else {
+						message = "String";
+						
+						break;
+					}
+				}
+
+			} catch (Exception e) {
+
+				i++;
+			}
+
+		return message;
+
 	}
-
-	// returns boolean if the number is in the given range or not
+	
+	
+	public static String fixSentence(String sentence){
+		
+		int length = sentence.length();
+		String corrected = "";
+	
+		String initLetter = "";
+		
+		char fLetter= ' ';
+		
+		fLetter = sentence.charAt(0);
+		initLetter = Character.toString(fLetter);
+		
+		
+		
+		char point = sentence.charAt(length - 1);
+		if (point != '.'){
+			
+			sentence = sentence + ".";
+		}
+		
+		corrected = initLetter.toUpperCase() + sentence.substring(1, length + 1);
+		
+		return corrected;
+	}
+	
+	
+	
+	
+	
 
 	public static void main(String[] args) {
-		System.out.print("Next odd number is : ");
-		System.out.println(getNextOddNumber(12));
+		// TODO Auto-generated method stub
 
-		System.out.print("Area of circle is : ");
-		System.out.println(getAreaOfCircle(3));
-
-		System.out.print("Number is in range : ");
-		System.out.println(isInRange(145, 987, 343));
+		Scanner in = new Scanner(System.in);
+		
+		System.out.println("Input sentence: ");
+		String R = in.nextLine();
+		
+		System.out.println("Input file name: ");
+		String F = in.nextLine();
+		
+		System.out.println("Input one String: ");
+		String S = in.nextLine();
+		
+		System.out.println("Input integer number: ");
+		int B = in.nextInt();
+		
+		
+		R = fixSentence(R);
+		
+		if(getExtension(F) != ".txt"){
+			F = F + ".txt";
+		}
+		
+		String type = getType(S);
+		
+		if (type.equals("boolean")) {
+			
+			
+			
+		} else if (type )
+		
+		
+		
+		in.close();
 	}
-
-	// we test our methods in main method..
 
 }
